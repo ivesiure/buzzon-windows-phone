@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="BuzzOn.UI.UserControls.UcItemLinhaOnibus"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot"  Margin="0,0,0,12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="*"  />
+            <ColumnDefinition Width="128"  />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Rectangle Name="rtgEsquerdo" Width="30" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" />
+
+        <Rectangle Name="rtgCorpo" Opacity="0.3" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" />
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock Name="txtNome" TextWrapping="Wrap" Margin="10,0,10,0" FontSize="28" />
+            <TextBlock Name="txtCategoria" Margin="10,0,10,2" FontSize="16" />
+        </StackPanel>
+
+        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" MinHeight="120" MinWidth="120">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <Button Name="btnFavoritos" BorderThickness="0" Width="60" Height="60" Grid.Column="0" Grid.Row="0" Tap="btnFavoritos_Tap">
+                <Canvas Name="cvnFavoritos" Width="58" Height="58" Margin="-18,-17, 0, 0">
+                    <Image Name="imgFavoritos" Source="/Assets/Buttons/like.png" Width="58" Height="58"  />
+                </Canvas>
+            </Button>
+
+            <Button Name="btnMapa" BorderThickness="0" Width="60" Height="60" Grid.Column="1" Grid.Row="0" Tap="btnMapa_Tap">
+                <Canvas Name="cvnMapa" Width="58" Height="58" Margin="-16,-17,0,0">
+                    <Image Name="imgMapa" Source="/Assets/Buttons/map.png" Width="58" Height="58"  />
+                </Canvas>
+            </Button>
+
+            <Button Name="btnProximosHorarios" BorderThickness="0" Width="60" Height="60" Grid.Column="0" Grid.Row="1" Tap="btnProximosHorarios_Tap">
+                <Canvas Name="cvnProximosHorarios" Width="58" Height="58" Margin="-18,-15,0,0">
+                    <Image Name="imgProximos" Source="/Assets/Buttons/time.left.png" Width="58" Height="58"  />
+                </Canvas>
+            </Button>
+
+            <Button Name="btnTabelaHorarios" BorderThickness="0" Width="60" Height="60" Grid.Column="1" Grid.Row="1" Tap="btnTabelaHorarios_Tap">
+                <Canvas Name="cvnTabHorarios" Width="58" Height="58" Margin="-16,-15,0,0">
+                    <Image Name="imgHorarios" Source="/Assets/Buttons/schedule.png" Width="58" Height="58"  />
+                </Canvas>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

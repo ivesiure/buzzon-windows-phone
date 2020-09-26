@@ -1,0 +1,36 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var codOnibus = window.location.hash.replace('#', '');
+
+        var config = {
+            apiKey: "",
+            authDomain: "",
+            databaseURL: "",
+            storageBucket: ""
+        };
+        firebase.initializeApp(config);
+
+        firebase.database().ref('coordenadas/' + codOnibus + '/').on('value', startRunning);
+
+        function startRunning(snapshot) {
+            var dadosLinha = snapshot.val();
+            window.external.notify(JSON.stringify(dadosLinha));
+        }
+    </script>
+    <script>
+        window.disconnect = function () {
+            try {
+                firebase.database().goOffline()
+            } catch (e) {
+                return "Fail: " + e.message;
+            }
+        }
+    </script>
+</body>
+</html>

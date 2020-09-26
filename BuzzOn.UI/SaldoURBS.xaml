@@ -1,0 +1,75 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="BuzzOn.UI.SaldoURBS"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControls="clr-namespace:BuzzOn.UI.UserControls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Text="BuzzOn" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <TextBlock Text="Perfis de Saldo" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </StackPanel>
+
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,20">
+                <phone:LongListSelector Name="llsPerfisSaldo" Margin="0" toolkit:TiltEffect.IsTiltEnabled="True" ItemRealized="llsPerfisSaldo_ItemRealized">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10" Name="stkPanel" Tap="stkPanel_Tap">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock TextWrapping="Wrap" FontSize="38" Text="{Binding Nome}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" />
+
+                                    <TextBlock TextWrapping="Wrap" FontSize="18" Text="{Binding CPF}" Grid.Column="0" Grid.Row="1" />
+                                    <TextBlock TextWrapping="Wrap" FontSize="18" Text="{Binding NrCartao}" Grid.Column="1" Grid.Row="1" />
+
+                                    <TextBlock TextWrapping="Wrap" FontSize="18" Text="{Binding DtUltimaAtualizacao}" Grid.Column="0" Grid.Row="2" />
+                                    <TextBlock TextWrapping="Wrap" FontSize="18" Text="{Binding UltimoSaldo}" Grid.Column="1" Grid.Row="2" />
+                                </Grid>
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Name="ctxMenuEditar" Header="Editar" Click="ctxMenuEditar_Click" />
+                                        <toolkit:MenuItem Name="ctxMenuRemover" Header="Remover" Click="ctxMenuRemover_Click" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+
+                <TextBlock Name="txtVazio" Text="Você não possui nenhum perfil cadastrado. Clique no botão abaixo para adicionar." TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Margin="20,0" />
+
+            </Grid>
+        </Grid>
+
+        <UserControls:UcToastMessage x:Name="ucToastMessage" ></UserControls:UcToastMessage>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>
